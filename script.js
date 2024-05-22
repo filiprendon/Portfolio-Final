@@ -63,6 +63,20 @@ function loadPage() {
   }, 1500);
 }
 
+
+
+
+// function loadPage() {
+//   console.log("Prueba");
+//   setTimeout(() => {
+//     document.querySelector(".loading").classList.add("animated");
+//     document.querySelector(".about").classList.add("loadAnimation");
+//   }, 1500);
+// }
+
+
+
+
 const textEl = document.getElementById("text");
 const customCursor = document.getElementById("custom-cursor");
 
