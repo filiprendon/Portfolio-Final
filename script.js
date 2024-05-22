@@ -5,7 +5,7 @@ const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
 let i = 0;
-const letras = "ABCDEFGHIJKLMNOPWZRSTUVY";
+const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890Çñ";
 
 window.onpointermove = (event) => {
   const { clientX, clientY } = event;
@@ -29,14 +29,14 @@ easter.onmouseover = (e) => {
         if (index < v) {
           return e.target.dataset.value[index];
         }
-        return letras[Math.floor(Math.random() * 15)];
+        return letras[Math.floor(Math.random() * 37)];
       })
       .join("");
 
     if (v >= 15) clearInterval(interval);
 
     v += 1;
-  }, 100);
+  }, 45);
 };
 
 function typeWriter(lp, i = 0) {
@@ -49,7 +49,7 @@ function typeWriter(lp, i = 0) {
 }
 
 window.ondblclick = (e) => {
-  console.log(palabras.join(", "));
+  console.log(letras.length)
 };
 
 typeWriter(loadPage);
@@ -57,11 +57,14 @@ typeWriter(loadPage);
 function loadPage() {
   console.log("Prueba");
   setTimeout(() => {
-    document.querySelector(".typing-text").classList.add("animated");
-    document.querySelector(".intro").classList.add("loadAnimation");
-    document.querySelector(".introText").classList.add("loadAnimation");
+      document.querySelector(".typing-text").classList.add("animated");
+      // document.querySelector(".intro").classList.add("loadAnimation");
+      document.querySelector(".introText").classList.add("loadAnimation");
+      document.querySelector('.load').classList.add('animated');
+      document.querySelector('.start').classList.add('loadAnimation');
   }, 1500);
 }
+
 
 
 
