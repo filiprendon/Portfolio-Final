@@ -1,11 +1,11 @@
 // Follow pointer
 const blob = document.getElementById("blob");
-let text = "Just a moment...";
+let text = "Are you ready for drake's dingaling?...";
 const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
 let i = 0;
-const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890ÇÑ";
+const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
 
 let typingText = document.querySelector(".typing-text");
 let introText = document.querySelector(".introText");
@@ -37,7 +37,7 @@ easter.onmouseover = (e) => {
         if (index < v) {
           return e.target.dataset.value[index];
         }
-        return letras[Math.floor(Math.random() * 37)];
+        return letras[Math.floor(Math.random() * 25)];
       })
       .join("");
 
