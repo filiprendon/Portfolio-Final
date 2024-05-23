@@ -1,12 +1,12 @@
 // Follow pointer
 const blob = document.getElementById("blob");
-let text = "Are you ready for drake's dingaling?...";
+let text = "I'm making good things...";
 const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
 let i = 0;
 const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-
+let delay = false;
 let typingText = document.querySelector(".typing-text");
 let introText = document.querySelector(".introText");
 let loadContainer = document.querySelector(".load");
@@ -28,20 +28,28 @@ window.onpointermove = (event) => {
 };
 
 easter.onmouseover = (e) => {
+  if (delay) return;
+  delay = true;
   let v = 0;
+  const originalText = e.target.dataset.value;
 
   const interval = setInterval(() => {
-    e.target.innerText = e.target.innerText
+    e.target.innerText = originalText
       .split("")
       .map((letra, index) => {
         if (index < v) {
-          return e.target.dataset.value[index];
+          return originalText[index];
         }
-        return letras[Math.floor(Math.random() * 25)];
+        return letras[Math.floor(Math.random() * letras.length)];
       })
       .join("");
 
-    if (v >= 15) clearInterval(interval);
+    if (v >= originalText.length) {
+      clearInterval(interval);
+      setTimeout(() => {
+        delay = false;
+      }, 2000);
+    }
 
     v += 1;
   }, 45);
@@ -71,9 +79,9 @@ function loadPage() {
     // skillsContainer.classList.add("loadAnimation");
     loadContainer.classList.add("animated");
     startContainer.classList.add("loadAnimation", "show");
-    realContainer.forEach(element => {
+    realContainer.forEach((element) => {
       element.classList.add("loadAnimation");
-    })
+    });
 
     // restContainers.forEach(rest => {
     //   rest.classList.add('loadAnimation')
@@ -89,7 +97,7 @@ function loadPage() {
     // });
     realContainer.forEach((element) => {
       element.addEventListener("animationend", () => {
-        element.classList.remove('real');
+        element.classList.remove("real");
       });
 
       // document.querySelector('real').style.display = 'block';
