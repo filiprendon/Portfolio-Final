@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Reddit+Mono:wght@200..900&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 :root {
   --titles: "Reddit Mono";
   --titleSize: 5rem;
-  --text: 'Lato';
+  --text: "Courier Prime";
 }
 
 body {
@@ -14,7 +18,16 @@ body {
   overflow-x: hidden;
 }
 
+.show {
+  min-height: 80vh !important;
+}
 .container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.containerLoad {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,16 +37,25 @@ body {
 
 .load {
   min-width: 100vw;
+}
 
+.real {
+  display: none;
 }
 .start {
-  width: 75%;
+  width: 70% !important;
+  justify-content: center;
+  position: relative;
+}
+
+.skills {
+  width: 100% !important;
   position: relative;
 }
 .animated {
   z-index: 3;
   position: absolute;
-  animation: load 3s forwards;
+  animation: load 2s forwards;
 }
 /* .intro,
 .introText {
@@ -45,21 +67,19 @@ body {
 }
 .loadAnimation {
   z-index: 3;
-  width: 70%;
+  /* width: 70%; */
   display: flex;
-  /* width: 50%; */
-  /* align-items: center; */
   height: 60%;
-  /* position: absolute; */
-  animation: start 3s forwards;
+  animation: start 2s forwards;
 }
 
 .about {
   display: flex;
   flex-direction: column;
-  width: -webkit-fill-available;
+  width: 70%; 
+  /* width: -webkit-fill-available; */
   position: relative;
-  margin-top: -30%;
+  /* margin-top: -30%; */
 }
 
 @keyframes load {
@@ -80,9 +100,15 @@ body {
   }
   30% {
     opacity: 0;
+    filter: blur(15px);
   }
+  /* 40%{
+    opacity: 0.7; 
+    filter: blur(15px);
+  } */
   100% {
     opacity: 1;
+    filter: none;
     transform: translateY(0);
   }
 }
@@ -91,9 +117,9 @@ h1 {
   font-family: var(--titles);
   font-size: var(--titleSize);
 }
-p{
+p {
   font-family: var(--text);
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 h1,
 p {
@@ -149,4 +175,37 @@ p {
   border-radius: 50%;
   pointer-events: none; /* Esto asegura que el cursor personalizado no interfiera con los elementos debajo */
   transition: width 0.3s, height 0.3s;
+}
+
+.grid {
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 15px;
+}
+
+.grid > * {
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 5px;
+  
+}
+
+.grid > *:hover {
+  background-color: red;
+  
+}
+
+.gi1 {
+  grid-area: 1 / 1 / 3 / 3;
+}
+.gi2 {
+  grid-area: 3 / 1 / 6 / 3;
+}
+.gi3 {
+  grid-area: 1 / 3 / 4 / 6;
+}
+.gi4 {
+  grid-area: 4 / 3 / 6 / 6;
 }

@@ -5,7 +5,15 @@ const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
 let i = 0;
-const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890Çñ";
+const letras = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890ÇÑ";
+
+let typingText = document.querySelector(".typing-text");
+let introText = document.querySelector(".introText");
+let loadContainer = document.querySelector(".load");
+let startContainer = document.querySelector(".start");
+let skillsContainer = document.querySelector(".skills");
+let restContainers = document.querySelectorAll(".rest");
+let realContainer = document.querySelectorAll(".real");
 
 window.onpointermove = (event) => {
   const { clientX, clientY } = event;
@@ -49,7 +57,7 @@ function typeWriter(lp, i = 0) {
 }
 
 window.ondblclick = (e) => {
-  console.log(letras.length)
+  console.log(letras.length);
 };
 
 typeWriter(loadPage);
@@ -57,17 +65,37 @@ typeWriter(loadPage);
 function loadPage() {
   console.log("Prueba");
   setTimeout(() => {
-      document.querySelector(".typing-text").classList.add("animated");
-      // document.querySelector(".intro").classList.add("loadAnimation");
-      document.querySelector(".introText").classList.add("loadAnimation");
-      document.querySelector('.load').classList.add('animated');
-      document.querySelector('.start').classList.add('loadAnimation');
+    typingText.classList.add("animated");
+    // document.querySelector(".intro").classList.add("loadAnimation");
+    // introText.classList.add("loadAnimation");
+    // skillsContainer.classList.add("loadAnimation");
+    loadContainer.classList.add("animated");
+    startContainer.classList.add("loadAnimation", "show");
+    realContainer.forEach(element => {
+      element.classList.add("loadAnimation");
+    })
+
+    // restContainers.forEach(rest => {
+    //   rest.classList.add('loadAnimation')
+    // })
+    loadContainer.addEventListener("animationend", () => {
+      loadContainer.remove();
+    });
+    typingText.addEventListener("animationend", () => {
+      typingText.remove();
+    });
+    // document.querySelector("rest").addEventListener("animationend", () => {
+    //   element.style.display = "block";
+    // });
+    realContainer.forEach((element) => {
+      element.addEventListener("animationend", () => {
+        element.classList.remove('real');
+      });
+
+      // document.querySelector('real').style.display = 'block';
+    });
   }, 1500);
 }
-
-
-
-
 
 // function loadPage() {
 //   console.log("Prueba");
@@ -76,9 +104,6 @@ function loadPage() {
 //     document.querySelector(".about").classList.add("loadAnimation");
 //   }, 1500);
 // }
-
-
-
 
 const textEl = document.getElementById("text");
 const customCursor = document.getElementById("custom-cursor");
