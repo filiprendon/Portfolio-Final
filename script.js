@@ -13,7 +13,8 @@ let loadContainer = document.querySelector(".load");
 let startContainer = document.querySelector(".start");
 let skillsContainer = document.querySelector(".skills");
 let projectsContainer = document.querySelector(".projects");
-
+let carousel = document.querySelector(".carousel");
+let dragInfo = document.getElementById("dragInfo");
 let restContainers = document.querySelectorAll(".rest");
 let realContainer = document.querySelectorAll(".real");
 
@@ -29,33 +30,59 @@ window.onpointermove = (event) => {
   );
 };
 
-easter.onmouseover = (e) => {
-  if (delay) return;
-  delay = true;
-  let v = 0;
-  const originalText = e.target.dataset.value;
+carousel.addEventListener("mouseenter", function () {
+  dragInfo.classList.remove("ok");
+  dragInfo.classList.add("dragInfo");
+});
 
-  const interval = setInterval(() => {
-    e.target.innerText = originalText
-      .split("")
-      .map((letra, index) => {
-        if (index < v) {
-          return originalText[index];
-        }
-        return letras[Math.floor(Math.random() * letras.length)];
-      })
-      .join("");
+carousel.addEventListener("mouseleave", function () {
+  dragInfo.classList.add("ok");
+  dragInfo.classList.remove("dragInfo");
+});
 
-    if (v >= originalText.length) {
-      clearInterval(interval);
-      setTimeout(() => {
-        delay = false;
-      }, 2000);
-    }
+carousel.addEventListener("pointermove", function (event) {
+  if (!dragInfo.classList.contains("ok")) {
+    event.preventDefault();
+    const { clientX, clientY } = event;
 
-    v += 1;
-  }, 45);
-};
+    dragInfo.animate(
+      {
+        left: `${clientX}px`,
+        top: `${clientY}px`,
+      },
+      { duration: 4000, fill: "forwards" }
+    );
+  }
+});
+
+
+// easter.onmouseover = (e) => {
+//   if (delay) return;
+//   delay = true;
+//   let v = 0;
+//   const originalText = e.target.dataset.value;
+
+//   const interval = setInterval(() => {
+//     e.target.innerText = originalText
+//       .split("")
+//       .map((letra, index) => {
+//         if (index < v) {
+//           return originalText[index];
+//         }
+//         return letras[Math.floor(Math.random() * letras.length)];
+//       })
+//       .join("");
+
+//     if (v >= originalText.length) {
+//       clearInterval(interval);
+//       setTimeout(() => {
+//         delay = false;
+//       }, 2000);
+//     }
+
+//     v += 1;
+//   }, 45);
+// };
 
 function typeWriter(lp, i = 0) {
   if (i < text.length) {
@@ -66,17 +93,33 @@ function typeWriter(lp, i = 0) {
   }
 }
 
+// scroll carousel
+// const carousel = document.querySelector('.carousel');
+// document.addEventListener('scroll', function () {
+//   const scrollTop = document.documentElement.scrollTop;
+//   carousel.classList.add('beingScrolled');
+//   const scrollAmount = scrollTop * 0.5;
+//   carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
+// })
 
 
-document.addEventListener('scroll', function () {
-  const scrollTop = document.documentElement.scrollTop;
-  const carousel = document.querySelector('.carousel');
-  const scrollAmount = scrollTop * 0.5;
-  carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
-});
 
+// let dragInfo = document.createElement('div')
+// carousel.addEventListener('mouseover', function () {
 
+//   dragInfo.classList.add('dragInfo')
+//   document.body.appendChild(dragInfo)
 
+//   window.onpointermove = (event) => {
+//     const { clientX, clientY } = event;
+//     dragInfo.style.left = `${clientX}px`;
+//     dragInfo.style.top = `${clientY}px`;
+//   };
+// });
+
+// carousel.addEventListener('mouseout', function () {
+//   document.body.removeChild(dragInfo)
+// });
 
 window.ondblclick = (e) => {
   console.log(letras.length);
