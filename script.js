@@ -1,6 +1,6 @@
 // Follow pointer
 const blob = document.getElementById("blob");
-let text = "I'm making good things...";
+let text = "It might take a moment...";
 const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
@@ -12,6 +12,8 @@ let introText = document.querySelector(".introText");
 let loadContainer = document.querySelector(".load");
 let startContainer = document.querySelector(".start");
 let skillsContainer = document.querySelector(".skills");
+let projectsContainer = document.querySelector(".projects");
+
 let restContainers = document.querySelectorAll(".rest");
 let realContainer = document.querySelectorAll(".real");
 
@@ -58,11 +60,23 @@ easter.onmouseover = (e) => {
 function typeWriter(lp, i = 0) {
   if (i < text.length) {
     element.textContent += text.charAt(i);
-    setTimeout(() => typeWriter(lp, i + 1), 60);
+    setTimeout(() => typeWriter(lp, i + 1), 6);
   } else {
     lp();
   }
 }
+
+
+
+document.addEventListener('scroll', function () {
+  const scrollTop = document.documentElement.scrollTop;
+  const carousel = document.querySelector('.carousel');
+  const scrollAmount = scrollTop * 0.5;
+  carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
+});
+
+
+
 
 window.ondblclick = (e) => {
   console.log(letras.length);
@@ -102,7 +116,7 @@ function loadPage() {
 
       // document.querySelector('real').style.display = 'block';
     });
-  }, 1500);
+  }, 100);
 }
 
 // function loadPage() {

@@ -15,7 +15,7 @@
   --textSizeSmall: 1rem;
 
   --text: "Courier Prime";
-  --border: linear-gradient(to right, #9370d8, #F3E5AB);
+  --border: linear-gradient(to right, #9370d8, #f3e5ab);
 }
 
 body {
@@ -57,13 +57,35 @@ body {
 }
 
 .skills {
+  width: 70% !important;
+  /* justify-content: center; */
+  top: 200px;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: row;
+  z-index: 5;
+  gap: 45px;
+  margin-top: 100px;
+  transform: rotate(5deg);
+}
+.skillItem {
+  height: 200px;
+  aspect-ratio: 1;
+  border: 1px solid white;
+  border-radius: 7px;
+}
+
+.projects {
   width: 100% !important;
   position: relative;
 }
 .animated {
   z-index: 3;
   position: absolute;
-  animation: load 1s forwards;
+  animation: load 0.1s forwards;
 }
 /* .intro,
 .introText {
@@ -78,7 +100,7 @@ body {
   /* width: 70%; */
   display: flex;
   height: 60%;
-  animation: start .6s forwards;
+  animation: start 0.1s forwards;
 }
 
 .about {
@@ -182,10 +204,10 @@ p {
   p {
     font-size: var(--textSizeMid);
   }
-  .about{
+  .about {
     width: 75%;
   }
-  .intro{
+  .intro {
     width: 100%;
   }
   .start {
@@ -204,10 +226,10 @@ p {
   p {
     font-size: var(--textSizeSmall);
   }
-  .about{
+  .about {
     width: 100%;
   }
-  
+
   .start {
     display: flex;
     width: 100% !important;
