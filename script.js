@@ -131,43 +131,62 @@ downloadCV.onmouseover = (e) => {
         return letras[Math.floor(Math.random() * letras.length)];
       })
       .join("");
-    e.target.dataset.value = "creativity";
+    setTimeout(() => {
+      if (downloadCV.textContent.charAt(0) === "d") {
+        downloadCV.style.color = "#FF6F61";
+        downloadCV.addEventListener("click", downloadCVHandler);
+      } else {
+        downloadCV.style.color = "#f5f5f5";
+        downloadCV.removeEventListener("click", downloadCVHandler);
+      }
+    }, 50);
 
+    e.target.dataset.value =
+      e.target.dataset.value === "download my cv"
+        ? "creativity"
+        : "download my cv";
     if (v >= originalText.length) {
       clearInterval(interval);
       setTimeout(() => {
         delay = false;
-      }, 10);
+      }, 1500);
     }
 
     v += 1;
   }, 45);
 };
 
-downloadCV.onmouseout = (e) => {
-  let v = 0;
-  const originalText = e.target.dataset.value;
+function downloadCVHandler() {
+  var link = document.createElement("a");
+  link.href = "resume.pdf";
+  link.download = "resume.pdf";
+  link.click();
+}
 
-  const interval = setInterval(() => {
-    e.target.innerText = originalText
-      .split("")
-      .map((letra, index) => {
-        if (index < v) {
-          return originalText[index];
-        }
-        e.target.dataset.value = "download my cv";
+// downloadCV.onmouseout = (e) => {
+//   let v = 0;
+//   const originalText = e.target.dataset.value;
 
-        return letras[Math.floor(Math.random() * letras.length)];
-      })
-      .join("");
+//   const interval = setInterval(() => {
+//     e.target.innerText = originalText
+//       .split("")
+//       .map((letra, index) => {
+//         if (index < v) {
+//           return originalText[index];
+//         }
+//         e.target.dataset.value = "download my cv";
 
-    if (v >= originalText.length) {
-      clearInterval(interval);
-    }
+//         return letras[Math.floor(Math.random() * letras.length)];
+//       })
+//       .join("");
 
-    v += 1;
-  }, 45);
-};
+//     if (v >= originalText.length) {
+//       clearInterval(interval);
+//     }
+
+//     v += 1;
+//   }, 45);
+// };
 
 function typeWriter(lp, i = 0) {
   if (i < text.length) {
