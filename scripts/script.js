@@ -355,7 +355,7 @@ function loadPage() {
 let icons = document.querySelectorAll(".bi");
 
 document.querySelector(".bi-github").onclick = () => {
-  window.open("https://github.com/luizgabrieldev", "_blank");
+  window.open("https://github.com/filiprendon", "_blank");
 };
 
 document.querySelector(".bi-linkedin").onclick = () => {
