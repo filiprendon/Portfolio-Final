@@ -11,11 +11,61 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
+    <div class="mediaContainer" style="display: none;">
+        <div class="videoContainer">
+            <video id="video">
+                <source id="videoSrc" src="">
+            </video>
+        </div>
+        <div class="progressBarContainer">
+            <div class="progressBar"></div>
+        </div>
+        <div class="videoControls">
+            <div class="leftControls">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-player-play playBtn">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M7 4v16l13 -8z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-rewind-backward-15 backwards">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M8 20h2a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-2v-3h3" />
+                    <path d="M15 18a6 6 0 1 0 0 -12h-11" />
+                    <path d="M5 14v6" />
+                    <path d="M7 9l-3 -3l3 -3" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-rewind-forward-15 forwards">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M17 9l3 -3l-3 -3" />
+                    <path d="M9 18a6 6 0 1 1 0 -12h11" />
+                    <path d="M16 20h2a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-2v-3h3" />
+                    <path d="M13 14v6" />
+                </svg>
+            </div>
+            <div class="rightControls">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-maximize fullScreen">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 8v-2a2 2 0 0 1 2 -2h2" />
+                    <path d="M4 16v2a2 2 0 0 0 2 2h2" />
+                    <path d="M16 4h2a2 2 0 0 1 2 2v2" />
+                    <path d="M16 20h2a2 2 0 0 0 2 -2v-2" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
     <div id="blob"></div>
     <div id="blur"></div>
     <div id="few"></div>
@@ -32,31 +82,44 @@
             <p class="introText real">I'm currently working as a Junior Web Developer, focusing on the development of a
                 Chrome extension. I enjoy coding cool projects and websites that spark curiosity and <span
                     class="download" data-value="download my cv"><span class="cv">c</span>reati<span
-                        class="cv">v</span>ity.</span></p>
+                        class="cv">v</span>ity</span></p>
         </div>
     </div>
 
     <div class="container projects container-fluid real" style="min-width: 100vw;">
         <div class="grid real">
-            <div class="gridItem gi1" data-name="pokemon"><img src="pokedex.png" alt="Pokedex" draggable="false">
+            <div class="gridItem gi6" data-name="pokemon" data-videourl="vids/pokedex.mp4"><img src="img/pokedex.png"
+                    alt="Pokedex" draggable="false">
                 <p class="projectTitle">pokédex</p>
             </div>
-            <div class="gridItem gi2" data-name="spotify"><img src="spoti.png" alt="Spotify Porject" draggable="false">
+            <div class="gridItem gi2" data-name="spotify"><img src="img/ss.png" alt="Spotify Porject"
+                    draggable="false">
                 <p class="projectTitle">Spotify Tracker</p>
             </div>
-            <div class="gridItem gi3" data-name="pomodoro_timer"><img src="pomodoro.png" alt="Pomodoro Timer" draggable="false">
+            <div class="gridItem gi3" data-name="pomodoro_timer"><img src="img/pomodoro.png" alt="Pomodoro Timer"
+                    draggable="false">
                 <p class="projectTitle">pomodoro</p>
             </div>
-            <div class="gridItem gi4">Kind Meals</div>
-            <div class="gridItem gi5" data-name="map"><img src="map.jpg" alt="Map" draggable="false">
-                <p class="projectTitle">KindMeals project</p>
-
-            </div>
-            <div class="gridItem gi6"><img src="juegoEuropa.png" alt="Barcelona Puzzle Game" draggable="false">
+            <div class="gridItem gi4"><img src="img/juegoEuropa.png" alt="Barcelona Puzzle Game" draggable="false">
                 <p class="projectTitle">puzzle game</p>
             </div>
-            <div class="gridItem gi7">Collections</div>
-            <div class="gridItem gi8" data-name="hangman_game"><img src="ahorcado.png" alt="Hangman Game" draggable="false">
+
+            <div class="gridItem gi5" data-name="map" data-videourl="vids/mapa.mp4"><img src="img/map.jpg" alt="Map"
+                    draggable="false">
+                <p class="projectTitle">KindMeals map</p>
+            </div>
+            <div class="gridItem gi1" data-videourl="vids/KindMeals.mp4"><img src="img/header-pic.png" alt="Kind Meals"
+                    draggable="false">
+                <p class="projectTitle">Kind Meals</p>
+
+            </div>
+            <div class="gridItem gi7" data-videourl="vids/collections.mp4"><img src="img/header-pic.png"
+                    alt="Collections" draggable="false">
+                <p class="projectTitle">Collections</p>
+
+            </div>
+            <div class="gridItem gi8" data-name="hangman_game"><img src="img/ahorcado.png" alt="Hangman Game"
+                    draggable="false">
                 <p class="projectTitle">hangman game</p>
             </div>
         </div>
@@ -66,12 +129,12 @@
         <div class="about">
             <h1 class="intro real skillTitle">Skills</h1>
             <div class="carousel">
-                <div class="skill-1 skillItem"></div>
-                <div class="skill-2 skillItem"></div>
-                <div class="skill-3 skillItem"></div>
-                <div class="skill-4 skillItem"></div>
-                <div class="skill-5 skillItem"></div>
-                <div class="skill-6 skillItem"></div>
+                <div class="skill-1 skillItem"><img src="img/js.png" alt=""></div>
+                <div class="skill-2 skillItem"><img src="img/vue.png" alt=""></div>
+                <div class="skill-3 skillItem"><img src="img/lara.png" alt=""></div>
+                <div class="skill-4 skillItem"><img src="img/html.png" alt=""></div>
+                <div class="skill-5 skillItem"><img src="img/php.png" alt=""></div>
+                <div class="skill-6 skillItem"><img src="img/api.png" alt=""></div>
             </div>
         </div>
     </div>
