@@ -65,6 +65,10 @@ video {
   height: 40px;
 }
 
+.showSkillUsage {
+  opacity: 1;
+}
+
 .leftControls {
   display: flex;
   gap: 25px;
@@ -113,18 +117,18 @@ body {
   min-width: 100vw;
 }
 
-.fullScreen:hover{
-  animation: fullScreen .5s forwards;
+.fullScreen:hover {
+  animation: fullScreen 0.5s forwards;
 }
 
-@keyframes fullScreen{
+@keyframes fullScreen {
   from {
     scale: 1;
   }
   50% {
     scale: 1.2;
   }
-  to{
+  to {
     scale: 1;
   }
 }
@@ -138,15 +142,36 @@ body {
   /* display: flex; */
 }
 
+.bi{
+  transition: .2s ease;
+  scale: 1;
+}
+.bi:hover{
+  transition: .2s ease;
+  scale: 1.08;
+  animation: hueRotate 10s infinite;
+}
 .skills {
   /* justify-content: center; */
   top: 200px;
   position: relative;
 }
 .contact {
-  /* justify-content: center; */
-  top: 200px;
   position: relative;
+  min-height: 0vh !important;
+}
+
+.footer{
+  top: 100px;
+  padding: 0px 223px;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 150px;
+  position: relative;
+  background-color: transparent;
 }
 
 .carousel {
@@ -171,15 +196,19 @@ body {
   border-radius: 7px;
 }
 
-.skillItem > img{
+.skillItem > img {
   width: 75%;
   height: 75%;
   object-fit: contain;
 }
-.skillItem:hover > img:hover{
-  filter: blur(24px);
+.skillItem:hover > img:hover {
+  filter: blur(55px);
 }
 
+.skillItem:hover .projectTitle {
+  text-align: center;
+  opacity: 1;
+}
 .projects {
   width: 100% !important;
   position: relative;

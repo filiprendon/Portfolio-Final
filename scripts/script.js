@@ -4,7 +4,7 @@ const accessKey = "iJ-iWopgvFdV_P6BqTyi16Uhcny2C2Xw4D8Ddo_4kfQ";
 // Follow pointer
 const blob = document.getElementById("blob");
 let text = "It might take a moment...";
-const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
+// const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
 let i = 0;
@@ -31,15 +31,18 @@ let forwards = document.querySelector(".forwards");
 let backwards = document.querySelector(".backwards");
 let progressBar = document.querySelector(".progressBar");
 let fullScreen = document.querySelector(".fullScreen");
-let videoContainer = document.querySelector('.videoContainer');
+let videoContainer = document.querySelector(".videoContainer");
+let skillItems = document.querySelectorAll(".skillItem");
+
+carousel.style.translate = "-16%";
 
 gridItemsAll.forEach(function (gItem) {
   gItem.addEventListener("click", function () {
     let videoUrl = gItem.dataset.videourl;
-    if(!videoUrl) return
+    if (!videoUrl) return;
     // console.log(gItem.dataset.videourl);
     mediaContainer.style.display = "flex";
-    
+
     videoSrc.src = videoUrl;
     video.load();
   });
@@ -77,8 +80,8 @@ fullScreen.addEventListener("click", function () {
   //   video.webkitRequestFullscreen();
   // }
 
-  videoContainer.style.width = '100%';
-  videoContainer.style.height = '95%';
+  videoContainer.style.width = "100%";
+  videoContainer.style.height = "95%";
 });
 document.querySelector("pauseBtn")?.addEventListener("click", function () {
   video.pause();
@@ -272,46 +275,58 @@ function typeWriter(lp, i = 0) {
 
 // scroll carousel
 
-let isDragging = false;
-let startPosition = 0;
-let deltaX = 0;
+// carousel.addEventListener('mousemove', (e) => {
+//   if (isDragging) {
+//     const currentPosition = e.clientX;
+//     deltaX = currentPosition - startPosition;
+//     const scrollAmount = deltaX * 0.7;
+//     carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
+//   }
+// });
 
-carousel.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startPosition = e.clientX;
-  deltaX = 0;
-  carousel.style.transition = 'none'; // Deshabilitar la transición para un arrastre suave
+// document.addEventListener('scroll', () => {
+//   const scrollTop = document.documentElement.scrollTop;
+//   carousel.classList.add('beingScrolled');
+//   const scrollAmount = scrollTop * 0.5;
+//   carousel.style.transform = `translateX(-${scrollAmount}px)`;
+// });
+
+// thx chatGPT <3
+$(function () {
+  var $carousel = $(".carousel");
+  var containerWidth = $(".container").width();
+  var carouselWidth = $carousel.width();
+  var maxOffset = 1500;
+  console.log(maxOffset)
+
+  var margin = 500;
+
+  $carousel.draggable({
+    axis: "x",
+    drag: function (event, ui) {
+      if (ui.position.left > margin || ui.position.left < -maxOffset - margin) {
+        ui.position.left = Math.min(
+          Math.max(ui.position.left, -maxOffset - margin),
+          margin
+        );
+      }
+    },
+    stop: function (event, ui) {
+      if (ui.position.left > 0) {
+        $carousel.animate({ left: 0 }, 500);
+      } else if (ui.position.left < -maxOffset) {
+        $carousel.animate({ left: -maxOffset }, 500);
+      }
+    },
+  });
 });
 
-carousel.addEventListener('mousemove', (e) => {
-  if (isDragging) {
-    const currentPosition = e.clientX;
-    deltaX = currentPosition - startPosition;
-    const scrollAmount = deltaX * 0.7;
-    carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
-  }
+skillItems.forEach((item) => {
+  item.addEventListener("click", function (e) {
+    console.log(e.target.closest('div'));
+    item.classList.add('showSkillUsage')
+  });
 });
-
-carousel.addEventListener('mouseup', () => {
-  isDragging = false;
-  carousel.style.transition = ''; // Restaurar la transición
-});
-
-carousel.addEventListener('mouseleave', () => {
-  isDragging = false;
-  carousel.style.transition = ''; // Restaurar la transición
-});
-
-document.addEventListener('scroll', () => {
-  const scrollTop = document.documentElement.scrollTop;
-  carousel.classList.add('beingScrolled');
-  const scrollAmount = scrollTop * 0.7;
-  carousel.style.transform = `translateX(-${scrollAmount}px) rotate(5deg) rotateX(15deg)`;
-});
-
-
-
-
 
 window.ondblclick = (e) => {
   console.log(letras.length);
@@ -320,47 +335,43 @@ window.ondblclick = (e) => {
 typeWriter(loadPage);
 
 function loadPage() {
-  console.log("Prueba");
   setTimeout(() => {
     typingText.classList.add("animated");
-    // document.querySelector(".intro").classList.add("loadAnimation");
-    // introText.classList.add("loadAnimation");
-    // skillsContainer.classList.add("loadAnimation");
     loadContainer.classList.add("animated");
     startContainer.classList.add("loadAnimation", "show");
     realContainer.forEach((element) => {
       element.classList.add("loadAnimation");
     });
-
-    // restContainers.forEach(rest => {
-    //   rest.classList.add('loadAnimation')
-    // })
     loadContainer.addEventListener("animationend", () => {
       loadContainer.remove();
     });
     typingText.addEventListener("animationend", () => {
       typingText.remove();
     });
-    // document.querySelector("rest").addEventListener("animationend", () => {
-    //   element.style.display = "block";
-    // });
     realContainer.forEach((element) => {
       element.addEventListener("animationend", () => {
         element.classList.remove("real");
       });
-
-      // document.querySelector('real').style.display = 'block';
     });
   }, 10);
 }
 
-// function loadPage() {
-//   console.log("Prueba");
-//   setTimeout(() => {
-//     document.querySelector(".loading").classList.add("animated");
-//     document.querySelector(".about").classList.add("loadAnimation");
-//   }, 1500);
-// }
+let icons = document.querySelectorAll('.bi');
+
+
+document.querySelector('.bi-github').onclick = () => {
+  window.open('https://github.com/luizgabrieldev', '_blank');
+}
+
+document.querySelector('.bi-linkedin').onclick = () => {
+  window.open('https://www.linkedin.com/in/filip-rend%C3%B3n-toneva-a8362826b/', '_blank');
+}
+document.querySelector('.bi-instagram').onclick = () => {
+  window.open('https://www.instagram.com/filiipp02/', '_blank');
+}
+document.querySelector('.bi-envelope').onclick = () => {
+  window.open('mailto:rendonfilip@gmail.com', '_blank');
+}
 
 const textEl = document.getElementById("text");
 const customCursor = document.getElementById("custom-cursor");
