@@ -3,7 +3,7 @@ const accessKey = "iJ-iWopgvFdV_P6BqTyi16Uhcny2C2Xw4D8Ddo_4kfQ";
 
 // Follow pointer
 const blob = document.getElementById("blob");
-let text = "It might take a moment...";
+let text = "I'm making good things...";
 // const palabras = ["Web Developer", "Drake shlong", "Puerto Freako"];
 let element = document.querySelector(".typing-text");
 let easter = document.querySelector(".intro");
@@ -29,10 +29,13 @@ let videoSrc = document.getElementById("videoSrc");
 let mediaContainer = document.querySelector(".mediaContainer");
 let forwards = document.querySelector(".forwards");
 let backwards = document.querySelector(".backwards");
+let closeVideo = document.querySelector(".close");
 let progressBar = document.querySelector(".progressBar");
 let fullScreen = document.querySelector(".fullScreen");
 let videoContainer = document.querySelector(".videoContainer");
 let skillItems = document.querySelectorAll(".skillItem");
+let footer = document.querySelector('.footer');
+
 
 carousel.style.translate = "-16%";
 
@@ -48,6 +51,16 @@ gridItemsAll.forEach(function (gItem) {
   });
 });
 
+closeVideo.addEventListener("click", function () {
+  video.currentTime = 0;
+  playBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+    class="icon icon-tabler icons-tabler-outline icon-tabler-player-play playBtn">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M7 4v16l13 -8z" />
+</svg>`;
+  mediaContainer.style.display = "none";
+});
 video.addEventListener("timeupdate", function () {
   var progress = video.currentTime / video.duration;
   progressBar.style.width = progress * 100 + "%";
@@ -71,6 +84,10 @@ playBtn.addEventListener("click", function () {
   }
 });
 
+
+function openFile(file){
+  window.open(file)
+}
 fullScreen.addEventListener("click", function () {
   // if (video.requestFullscreen) {
   //   video.requestFullscreen();
@@ -239,39 +256,19 @@ function downloadCVHandler() {
   link.click();
 }
 
-// downloadCV.onmouseout = (e) => {
-//   let v = 0;
-//   const originalText = e.target.dataset.value;
-
-//   const interval = setInterval(() => {
-//     e.target.innerText = originalText
-//       .split("")
-//       .map((letra, index) => {
-//         if (index < v) {
-//           return originalText[index];
-//         }
-//         e.target.dataset.value = "download my cv";
-
-//         return letras[Math.floor(Math.random() * letras.length)];
-//       })
-//       .join("");
-
-//     if (v >= originalText.length) {
-//       clearInterval(interval);
-//     }
-
-//     v += 1;
-//   }, 45);
-// };
-
 function typeWriter(lp, i = 0) {
   if (i < text.length) {
     element.textContent += text.charAt(i);
-    setTimeout(() => typeWriter(lp, i + 1), 6);
+    setTimeout(() => typeWriter(lp, i + 1), 50);
   } else {
     lp();
   }
 }
+
+document.addEventListener('scroll', () => {
+    footer.style.display = 'flex';
+  });
+
 
 // scroll carousel
 
@@ -291,13 +288,12 @@ function typeWriter(lp, i = 0) {
 //   carousel.style.transform = `translateX(-${scrollAmount}px)`;
 // });
 
-// thx chatGPT <3
 $(function () {
   var $carousel = $(".carousel");
   var containerWidth = $(".container").width();
   var carouselWidth = $carousel.width();
   var maxOffset = 1500;
-  console.log(maxOffset)
+  console.log(maxOffset);
 
   var margin = 500;
 
@@ -323,8 +319,8 @@ $(function () {
 
 skillItems.forEach((item) => {
   item.addEventListener("click", function (e) {
-    console.log(e.target.closest('div'));
-    item.classList.add('showSkillUsage')
+    console.log(e.target.closest("div"));
+    item.classList.add("showSkillUsage");
   });
 });
 
@@ -353,57 +349,61 @@ function loadPage() {
         element.classList.remove("real");
       });
     });
-  }, 10);
+  }, 1500);
 }
 
-let icons = document.querySelectorAll('.bi');
+let icons = document.querySelectorAll(".bi");
+
+document.querySelector(".bi-github").onclick = () => {
+  window.open("https://github.com/luizgabrieldev", "_blank");
+};
+
+document.querySelector(".bi-linkedin").onclick = () => {
+  window.open(
+    "https://www.linkedin.com/in/filip-rend%C3%B3n-toneva-a8362826b/",
+    "_blank"
+  );
+};
+document.querySelector(".bi-instagram").onclick = () => {
+  window.open("https://www.instagram.com/filiipp02/", "_blank");
+};
+document.querySelector(".bi-envelope").onclick = () => {
+  window.open("mailto:rendonfilip@gmail.com", "_blank");
+};
 
 
-document.querySelector('.bi-github').onclick = () => {
-  window.open('https://github.com/luizgabrieldev', '_blank');
-}
+// Para un futuro
+// const textEl = document.getElementById("text");
+// const customCursor = document.getElementById("custom-cursor");
 
-document.querySelector('.bi-linkedin').onclick = () => {
-  window.open('https://www.linkedin.com/in/filip-rend%C3%B3n-toneva-a8362826b/', '_blank');
-}
-document.querySelector('.bi-instagram').onclick = () => {
-  window.open('https://www.instagram.com/filiipp02/', '_blank');
-}
-document.querySelector('.bi-envelope').onclick = () => {
-  window.open('mailto:rendonfilip@gmail.com', '_blank');
-}
+// // Calcular el tamaño del cursor personalizado
+// const fontSize = parseInt(
+//   window
+//     .getComputedStyle(textEl)
+//     .getPropertyValue("font-size")
+//     .replace("px", "")
+// );
+// const cursorSize = fontSize * 1.4;
 
-const textEl = document.getElementById("text");
-const customCursor = document.getElementById("custom-cursor");
+// // Función para mover el cursor personalizado
+// function moveCursor(event) {
+//   customCursor.style.left = event.clientX - cursorSize / 2 + "px";
+//   customCursor.style.top = event.clientY - cursorSize / 2 + "px";
+// }
 
-// Calcular el tamaño del cursor personalizado
-const fontSize = parseInt(
-  window
-    .getComputedStyle(textEl)
-    .getPropertyValue("font-size")
-    .replace("px", "")
-);
-const cursorSize = fontSize * 1.4;
+// // Función para ampliar el cursor cuando se coloca sobre el texto
+// function enlargeCursor() {
+//   customCursor.style.width = cursorSize + "px";
+//   customCursor.style.height = cursorSize + "px";
+// }
 
-// Función para mover el cursor personalizado
-function moveCursor(event) {
-  customCursor.style.left = event.clientX - cursorSize / 2 + "px";
-  customCursor.style.top = event.clientY - cursorSize / 2 + "px";
-}
+// // Función para restablecer el tamaño del cursor cuando se sale del texto
+// function resetCursor() {
+//   customCursor.style.width = "20px";
+//   customCursor.style.height = "20px";
+// }
 
-// Función para ampliar el cursor cuando se coloca sobre el texto
-function enlargeCursor() {
-  customCursor.style.width = cursorSize + "px";
-  customCursor.style.height = cursorSize + "px";
-}
-
-// Función para restablecer el tamaño del cursor cuando se sale del texto
-function resetCursor() {
-  customCursor.style.width = "20px";
-  customCursor.style.height = "20px";
-}
-
-// Agregar eventos de escucha
-textEl.addEventListener("mouseover", enlargeCursor);
-textEl.addEventListener("mouseout", resetCursor);
-document.addEventListener("mousemove", moveCursor);
+// // Agregar eventos de escucha
+// textEl.addEventListener("mouseover", enlargeCursor);
+// textEl.addEventListener("mouseout", resetCursor);
+// document.addEventListener("mousemove", moveCursor);

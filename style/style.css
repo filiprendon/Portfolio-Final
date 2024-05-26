@@ -216,7 +216,7 @@ body {
 .animated {
   z-index: 3;
   position: absolute;
-  animation: load 0.1s forwards;
+  animation: load 0.5s forwards;
 }
 /* .intro,
 .introText {

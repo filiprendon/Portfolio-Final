@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
     <script src="scripts/script.js" defer></script>
+    <script src="Spotify/login.mjs" defer></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -55,6 +56,13 @@
                     <path d="M16 20h2a1 1 0 0 0 1 -1v-1a1 1 0 0 0 -1 -1h-2v-3h3" />
                     <path d="M13 14v6" />
                 </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-x close">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M18 6l-12 12" />
+                    <path d="M6 6l12 12" />
+                </svg>
             </div>
             <div class="rightControls">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -93,36 +101,36 @@
 
     <div class="container projects container-fluid real" style="min-width: 100vw;">
         <div class="grid real">
+            <div class="gridItem gi1" data-videourl="vids/KindMeals.mp4"><img src="img/header-pic.png" alt="Kind Meals"
+                    draggable="false">
+                <p class="projectTitle">Kind Meals</p>
+            </div>
+
+            <div class="gridItem gi2" data-name="spotify"><img src="img/ss.png" alt="Spotify Porject" onclick="login()" draggable="false">
+                <p class="projectTitle">spotify Tracker</p>
+            </div>
+            <div class="gridItem gi3" data-name="pomodoro_timer"><img src="img/pomodoro.png" alt="Pomodoro Timer" onclick="openFile('Pomodoro/index.html')"
+                    draggable="false">
+                <p class="projectTitle">pomodoro</p>
+            </div>
+            <div class="gridItem gi4"><img src="img/juegoEuropa.png" alt="Barcelona Puzzle Game" draggable="false" onclick="openFile('Europa/europaFacil.html')">
+                <p class="projectTitle">puzzle game</p>
+            </div>
+
+            <div class="gridItem gi5" data-name="map" data-videourl="vids/mapa.mp4"><img src="img/mapa.png" alt="Map"
+                    draggable="false">
+                <p class="projectTitle">KindMeals map</p>
+            </div>
             <div class="gridItem gi6" data-name="pokemon" data-videourl="vids/pokedex.mp4"><img src="img/pokedex.png"
                     alt="Pokedex" draggable="false">
                 <p class="projectTitle">pokédex</p>
             </div>
-            <div class="gridItem gi2" data-name="spotify"><img src="img/ss.png" alt="Spotify Porject" draggable="false">
-                <p class="projectTitle">Spotify Tracker</p>
-            </div>
-            <div class="gridItem gi3" data-name="pomodoro_timer"><img src="img/pomodoro.png" alt="Pomodoro Timer"
-                    draggable="false">
-                <p class="projectTitle">pomodoro</p>
-            </div>
-            <div class="gridItem gi4"><img src="img/juegoEuropa.png" alt="Barcelona Puzzle Game" draggable="false">
-                <p class="projectTitle">puzzle game</p>
-            </div>
-
-            <div class="gridItem gi5" data-name="map" data-videourl="vids/mapa.mp4"><img src="img/map.jpg" alt="Map"
-                    draggable="false">
-                <p class="projectTitle">KindMeals map</p>
-            </div>
-            <div class="gridItem gi1" data-videourl="vids/KindMeals.mp4"><img src="img/header-pic.png" alt="Kind Meals"
-                    draggable="false">
-                <p class="projectTitle">Kind Meals</p>
-
-            </div>
-            <div class="gridItem gi7" data-videourl="vids/collections.mp4"><img src="img/header-pic.png"
+            <div class="gridItem gi7" data-videourl="vids/collections.mp4"><img src="img/collections.png"
                     alt="Collections" draggable="false">
-                <p class="projectTitle">Collections</p>
+                <p class="projectTitle">collections</p>
 
             </div>
-            <div class="gridItem gi8" data-name="hangman_game"><img src="img/ahorcado.png" alt="Hangman Game"
+            <div class="gridItem gi8" data-name="hangman_game"><img src="img/ahorcado.png" alt="Hangman Game" onclick="openFile('Juego-ahorcado/ahorcado/index.html')"
                     draggable="false">
                 <p class="projectTitle">hangman game</p>
             </div>
@@ -149,7 +157,7 @@
                     <p class="projectTitle">collections</p>
                 </div>
                 <div class="skill-6 skillItem"><img src="img/api.png" alt="">
-                    <p class="projectTitle">KindMeals and Spoitfy and Spotify</p>
+                    <p class="projectTitle">KindMeals and Spotify project</p>
                 </div>
             </div>
         </div>
@@ -168,7 +176,7 @@
             <h1 class="intro real contactTitle">Get in touch</h1>
         </div>
     </div>
-    <div class="footer">
+    <div class="footer" style="display: none;">
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#ff6f61" class="bi bi-github"
             viewBox="0 0 16 16">
             <path
