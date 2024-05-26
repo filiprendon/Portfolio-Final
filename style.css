@@ -76,6 +76,12 @@ body {
   top: 200px;
   position: relative;
 }
+.contact {
+  /* justify-content: center; */
+  top: 200px;
+  position: relative;
+}
+
 
 .carousel {
   display: flex;
@@ -193,6 +199,16 @@ p {
   font-size: 1rem;
 }
 
+.projectTitle{
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  font-family: var(--text);
+  font-size: var(--textSize);
+  position: absolute;
+}
+
+
 #blob {
   /* background-color: white; */
   height: 500px;
@@ -305,7 +321,7 @@ p {
   h1 {
     font-size: var(--titleSizeMid);
   }
-  p {
+  p, .projectTitle {
     font-size: var(--textSizeMid);
   }
   .about {
@@ -314,7 +330,7 @@ p {
   .intro {
     width: 100%;
   }
-  .start {
+  .start, .skills, .contact {
     display: flex;
     width: 80% !important;
     justify-content: center;
@@ -327,14 +343,14 @@ p {
   h1 {
     font-size: var(--titleSizeSmall);
   }
-  p {
+  p, .projectTitle {
     font-size: var(--textSizeSmall);
   }
   .about {
     width: 100%;
   }
 
-  .start {
+  .start, .skills, .contact {
     display: flex;
     width: 100% !important;
     justify-content: center;
@@ -369,6 +385,8 @@ p {
   grid-template-rows: repeat(6, auto);
   grid-gap: 0.3rem;
 }
+
+
 
 .grid > * {
   /* border: 1px solid #3a3a3d; */
@@ -444,7 +462,9 @@ p {
   animation: hueRotate 10s infinite;
 } */
 
-.gridItem:hover {
+
+.gridItem:hover, .gridItem:hover .projectTitle{
+  opacity: 1;
   border: none;
   transition: 1s ease;
   animation: 10s infinite hueRotate;

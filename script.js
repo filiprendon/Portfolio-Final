@@ -134,9 +134,13 @@ downloadCV.onmouseover = (e) => {
     setTimeout(() => {
       if (downloadCV.textContent.charAt(0) === "d") {
         downloadCV.style.color = "#FF6F61";
+        downloadCV.style.fontWeight = "900";
+        downloadCV.style.cursor = "pointer";
         downloadCV.addEventListener("click", downloadCVHandler);
       } else {
+        downloadCV.style.fontWeight = "normal";
         downloadCV.style.color = "#f5f5f5";
+        downloadCV.style.cursor = "default";
         downloadCV.removeEventListener("click", downloadCVHandler);
       }
     }, 50);
